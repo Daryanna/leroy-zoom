@@ -1,0 +1,13 @@
+/*
+ * 	Leroy Zoom - jQuery plugin
+ *	written by Edison Machado
+ *	http://github.com/edison/leroy-zoom
+ *
+ *	Copyright (c) 2013 Edison Machado (http://w3cs.com.br)
+ *	Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0.txt)
+ *
+ *	Built for jQuery library
+ *	http://jquery.com
+ *
+ */
+#leroy_zoom_frame{width:300px;height:300px;background:#FFF;color:#333;position:absolute;overflow:hidden;line-height:300px;border:3px solid #72bf44;text-align:center;border-radius:100%;-khtml-border-radius:0}a.zoomable .zoom-cursor{display:none;position:absolute}a.zoomable{cursor:crosshair}a.magnifiable .zoom-cursor:after{content:"Click to magnify";border:1px solid #fff;font-size:11px;background-color:#72bf44;line-height:18px;color:#fff;display:block;width:100px;text-align:center;margin-left:-106px;margin-top:-24px}a.magnified .zoom-cursor:after{content:"";width:80px;height:80px;background-color:#FFF;margin-left:-40px;margin-top:-40px;border:2px dotted #72bf44;opacity:.6;border-radius:100%;-khtml-border-radius:0}

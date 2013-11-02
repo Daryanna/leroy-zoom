@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leroy Zoom Demo</title>
+
+	<link rel="stylesheet" type="text/css" href="css/jquery.leroy-zoom.min.css">
+
+	<style type="text/css">
+		body {
+			font-family: Arial, Helvetica, "sans-serif";
+			margin: 100px; 
+		}
+
+		a {
+			color: #72BF44;
+		}
+	</style>
+
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.leroy-zoom.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$("#demo-trigger").leroyZoom({
+				zoomTop: 200,
+				zoomLeft: 560
+			});
+
+		});
+	</script>
+</head>
+<body>
+
+	<h1>Leroy Zoom Demo</h1>
+
+	<p>
+		Roll mouse over the image bellow to see the medium detailed zoom. <br>
+		Click to view the magnifed large image.
+	</p>
+
+	<a id="demo-trigger" href="#" data-medium-url="sample/medium.jpg" data-large-url="sample/large.jpg">
+		<img src="sample/small.jpg" />
+	</a>
+
+	<p>
+		<b>Instructions & Source code:</b> <br>
+		<a href="http://github.com/edison/leroy-zoom">http://github.com/edison/leroy-zoom</a>
+	</p>
+</body>
+</html>
