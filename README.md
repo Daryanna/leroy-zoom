@@ -12,7 +12,7 @@ This plugin works on a 2-steps zoom behavior:
 
 You'll need three versions of the same picture with different dimensions (small, medium, large). The first version (small) is shown by default and is the one which user will over the mouse to view the first-step details. Then, the user can "click to magnify" to see the second-step details of image and the large picture version is used for this.
 
-Or let the **demo** speaks for itself: [Leroy Zoom Demo](http://url-to-the-demo.com)
+Or let the **[demo](http://edison.github.io/leroy-zoom)** speaks for itself: [Leroy Zoom Demo](http://edison.github.io/leroy-zoom)
 
 ## How to use
 
@@ -47,7 +47,7 @@ Now, make the Javascript apply the plugin behavior for the markup you just added
 </script>
 ```
 
-That's it! You can use the **[demo page](http://url-to-the-demo.com)**  source code as guide to check if everything is ok.
+That's it! You can use the **[demo page](http://edison.github.io/leroy-zoom)**  source code as guide to check if everything is ok.
 
 ## Options
 
