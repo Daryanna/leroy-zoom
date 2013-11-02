@@ -1,0 +1,13 @@
+/*
+ * 	Leroy Zoom - jQuery plugin
+ *	written by Edison Machado
+ *	http://github.com/edison/leroy-zoom
+ *
+ *	Copyright (c) 2013 Edison Machado (http://w3cs.com.br)
+ *	Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0.txt)
+ *
+ *	Built for jQuery library
+ *	http://jquery.com
+ *
+ */
+(function(a){a.fn.leroyZoom=function(b){var l={id:"leroy_zoom_frame",parent:"body",append:true,preload:"Loading...",error:"Image could not be loaded.",zoomTop:100,zoomLeft:460};var p,c;var n,j,h,f,e,q,k,g;var u=false;var x=false;var b=a.extend(l,b);this.each(function(){p=this;var y=this.tagName.toLowerCase();if(y=="a"&&i(a(this))){if(v(a(this))){a(this).addClass("magnifiable");a('<div class="zoom-cursor"></div>').prependTo(p)}a(this).addClass("zoomable").click(function(z){o(z,a(this));return false}).hover(function(z){d(z,a(this))},function(){m()}).mousemove(function(z){s(z)})}else{a(this).click(function(){return false})}});c=function(y,A){a("#"+b.id).text(b.preload);var z=a("<img />").attr("src",y).load(function(){if(!this.complete||typeof this.naturalWidth=="undefined"||this.naturalWidth==0){t();return false}else{a("#"+b.id).text("");A(z)}})};function i(y){return y.attr("data-medium-url")!="#"&&y.attr("data-medium-url")!=""}function v(y){return y.attr("data-large-url")!="#"&&y.attr("data-large-url")!=""}function o(z,y){if(!x&&v(y)){x=true;a("#"+b.id).text(b.preload);a(p).find(".zoom-cursor").hide();y.addClass("magnified");c(y.attr("data-large-url"),function(A){a(p).find(".zoom-cursor").fadeIn(300);a("#"+b.id).animate({top:b.zoomTop-50,width:j+100,height:f+100},300);w(z,A)})}}function d(A,y){var z=a('<div id="'+b.id+'"></div>');if(b.append){z.appendTo(b.parent)}else{z.prependTo(b.parent)}a("#"+b.id).css({top:b.zoomTop,left:b.zoomLeft});img=c(y.attr("data-medium-url"),function(B){w(A,B);if(v(y)){a(p).find(".zoom-cursor").show()}})}function w(z,y){u=true;a(y).css({position:"absolute",top:"0",left:"0"});a("#"+b.id).append(y);n=a("img",p).width();h=a("img",p).height();j=a("#"+b.id).width();f=a("#"+b.id).height();w3=a(y).width();h3=a(y).height();w4=a(y).width()-j;h4=a(y).height()-f;e=w4/n;q=h4/h;s(z)}function m(){u=false;x=false;a("#"+b.id).remove();a(p).removeClass("magnified");a(p).find(".zoom-cursor").hide()}function t(){a("#"+b.id).html(b.error)}function s(E){if(u){var D=a("img",p).offset();var A=E.pageX-D.left;var C=E.pageY-D.top;var F=A*e;var z=C*q;F=(F>w4)?w4:F;z=(z>h4)?h4:z;r(E.pageX,E.pageY,A,C);k=n/(w3/j);g=h/(h3/f);var B=(A-k/2)*(w3/n)*(-1);var y=(C-g/2)*(h3/h)*(-1);if(x){B=B+50;y=y+50}a("#"+b.id+" img").css({left:B,top:y})}}function r(z,C,A,B){if(A>-1&&A<n&&B>-1&&B<h){a(p).find(".zoom-cursor").offset({left:z,top:C})}else{a(p).find(".zoom-cursor").hide()}}}})(jQuery);
