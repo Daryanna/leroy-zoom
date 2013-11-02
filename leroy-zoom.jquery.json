@@ -1,0 +1,35 @@
+{
+    "name": "leroy-zoom",
+    "title": "Leroy Zoom",
+    "description": "A lightweigth and easy to use image zoom and magnify jQuery plugin with less than 4 KB.",
+    "keywords": [
+        "leroy",
+        "zoom",
+        "magnify"
+    ],
+    "version": "1.0.0",
+    "author": {
+        "name": "Edison Machado",
+        "url": "https://github.com/edison/leroy-zoom#credits"
+    },
+    "maintainers": [
+        {
+            "name": "Edison Machado",
+            "email": "edimach@gmail.com",
+            "url": "http://w3cs.com.br"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "APACHE 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    ],
+    "bugs": "https://github.com/edison/leroy-zoom/issues",
+    "homepage": "https://github.com/edison/leroy-zoom",
+    "docs": "https://github.com/edison/leroy-zoom",
+    "download": "https://github.com/edison/leroy-zoom",
+    "dependencies": {
+        "jquery": ">=1.10"
+    }
+}
