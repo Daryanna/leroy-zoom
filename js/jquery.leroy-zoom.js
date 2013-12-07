@@ -33,7 +33,7 @@
 			obj = this;
 
 			var tagName = this.tagName.toLowerCase();
-			var show_wit = function(obj){
+			var init_image = function(obj){
 				if(tagName == 'a' && zoomable($(obj))){
 					if (magnifiable($(obj))) {
 						$(obj).addClass("magnifiable");
