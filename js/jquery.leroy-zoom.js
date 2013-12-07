@@ -33,19 +33,21 @@
 			obj = this;
 
 			var tagName = this.tagName.toLowerCase();
-			if(tagName == 'a' && zoomable($(this))){
-				if (magnifiable($(this))) {
-					$(this).addClass("magnifiable");
-					$('<div class="zoom-cursor"></div>').prependTo(obj);
+			var show_wit = function(obj){
+				if(tagName == 'a' && zoomable($(obj))){
+					if (magnifiable($(obj))) {
+						$(obj).addClass("magnifiable");
+						$('<div class="zoom-cursor"></div>').prependTo(obj);
+					}
+					$(obj)
+						.addClass("zoomable")
+						.click(function(e){ magnify(e, $(obj), obj); return false;})
+						.hover(function(e){ start(e, $(obj), obj); }, function() { hide(); })
+						.mousemove(function(e){ move(e, obj); });
+				} else {
+					$(obj).click(function(){ return false; });
 				}
-				$(this)
-					.addClass("zoomable")
-					.click(function(e){ magnify(e, $(this)); return false;})
-					.hover(function(e){ start(e, $(this)); }, function() { hide(); })
-					.mousemove(function(e){ move(e); });
-			} else {
-				$(this).click(function(){ return false; });
-			}
+			}(obj);
 		});
 
 		load_image = function(href, callback) {
@@ -70,26 +72,28 @@
 			return anchor.attr("data-large-url") != "#" && anchor.attr("data-large-url") != ""
 		};
 
-		function magnify(e, anchor) {
+		function magnify(e, anchor, obj) {
 			if (!magnified && magnifiable(anchor)) {
 				magnified = true;
 				$('#'+ options.id).text(options.preload);
-				$(obj).find(".zoom-cursor").hide();
+				anchor.find(".zoom-cursor").hide();
 				anchor.addClass("magnified");
-				load_image(anchor.attr("data-large-url"), function(img) {
-					$(obj).find(".zoom-cursor").fadeIn(300);
+				
+				var callback = function(img) {
+					anchor.find(".zoom-cursor").fadeIn(300);
 
 		            $('#'+ options.id).animate({
 		                top: options.zoomTop - 50,
 		                width: w2 + 100,
 		                height: h2 + 100
 		            }, 300);
-		            show(e, img);
-				});
+		            show(e, img, obj);
+				};
+				load_image(anchor.attr("data-large-url"), callback);
 			}
 		};
 
-		function start(e, anchor){
+		function start(e, anchor, obj){
 			var zoom = $('<div id="'+ options.id +'"></div>');
 			if(options.append) { zoom.appendTo(options.parent) } else { zoom.prependTo(options.parent) };
 
@@ -97,16 +101,17 @@
 				top: options.zoomTop,
 				left: options.zoomLeft
 			});
-
-			img = load_image(anchor.attr("data-medium-url"), function(img) {
-				show(e, img);
+			
+			var callback = function(img) {
+				show(e, img, obj);
 				if (magnifiable(anchor)) {
 					$(obj).find(".zoom-cursor").show();
 				}
-			});
+			};
+			img = load_image(anchor.attr("data-medium-url"), callback);
 		};
 
-		function show(e, img){
+		function show(e, img, obj){
 			over = true;
 			$(img).css({ 'position':'absolute','top':'0','left':'0' });
 			$('#'+ options.id).append(img);
@@ -123,7 +128,7 @@
 			move(e);
 		};
 
-		function hide(){
+		function hide(obj){
 			over = false;
 			magnified = false;
 			$('#'+ options.id).remove();
@@ -135,7 +140,7 @@
 			$('#'+ options.id).html(options.error);
 		};
 
-		function move(e){
+		function move(e, obj){
 			if(over){
 				var p = $('img',obj).offset();
 				var pl = e.pageX - p.left;
@@ -144,7 +149,7 @@
 				var xt = pt*rh;
 				xl = (xl>w4) ? w4 : xl;
 				xt = (xt>h4) ? h4 : xt;
-				move_cursor(e.pageX, e.pageY, pl, pt);
+				move_cursor(e.pageX, e.pageY, pl, pt, obj);
 				wa = w1/(w3/w2);
 				ha = h1/(h3/h2);
 
@@ -160,14 +165,14 @@
 			};
 		};
 
-		function move_cursor(x, y, pl, pt) {
+		function move_cursor(x, y, pl, pt, obj) {
 			if (pl > -1 && pl < w1 && pt > -1 && pt < h1) {
 				$(obj).find(".zoom-cursor").offset({
 					left: x,
 					top: y
 				});
 			} else {
-				$(obj).find(".zoom-cursor").hide();
+				$(obj).find(".zoom-cursor").hide(obj);
 			}
 		};
 	};
